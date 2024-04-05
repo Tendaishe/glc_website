@@ -1,5 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Slab&display=swap");
+
 html,
 body {
+    font-family: "Roboto Condensed";
     margin: 0;
     padding: 0;
+}
+
+:root {
+    --primary-color: #1974d2;
+    --secondary-color: #ff7f50;
+    --background-color: #f0f8ff;
+    --background-secondary: #e0e0e0;
+    --heading-color: #00008b;
+    --white-color: #fff;
+    --text-white-color: #fff;
+    --text-black-color: #000;
+
+    /* Button colors
+    --button-bg-color: #008cba;
+    --button-bg-hover: #005f6b;
+    --button-next-bg-color: #4caf50;
+    --button-next-bg-hover: #45a049;
+    --button-back-bg-color: #f44336;
+    --button-back-bg-hover: #da190b; */
 }
