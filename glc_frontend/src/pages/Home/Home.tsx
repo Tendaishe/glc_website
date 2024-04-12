@@ -1,10 +1,11 @@
-// import Banner from "../../components/Banner/Banner";
-import { Banner, OurVision } from "../../components/index";
+import { Banner, OurVision, BibleSection } from "../../components/index";
+
 const Home = () => {
     return (
         <>
             <Banner></Banner>
             <OurVision></OurVision>
+            <BibleSection></BibleSection>
         </>
     );
 };

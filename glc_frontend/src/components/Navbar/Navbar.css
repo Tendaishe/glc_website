@@ -14,7 +14,7 @@
 }
 
 .navbar-menu {
-    margin-left: 3rem;
+    margin-left: 2rem;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -48,7 +48,6 @@
 
 .navbar-item a:hover {
     color: var(--secondary-color);
-
     text-decoration: underline;
 }
 
@@ -58,7 +57,7 @@
 
 .navbar-button {
     padding: 0.7rem 1.5rem;
-    margin: 0 2rem;
+    margin: 0 0.5rem;
     background-color: var(--secondary-color);
     border: none;
     color: var(--text-white-color);

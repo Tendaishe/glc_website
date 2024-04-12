@@ -1,0 +1,50 @@
+.bible-section-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    padding: 2rem;
+    height: 500px;
+}
+
+.bible-text-container {
+    max-width: 50%;
+}
+
+.bible-text-container h1 {
+    color: var(--heading-color);
+    margin-bottom: 1rem;
+}
+
+.bible-text-container p {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+.bible-text-container cite {
+    display: block;
+    color: var(--text-color);
+    font-weight: bold;
+    font-style: normal;
+    text-align: end;
+}
+
+.bible-image-container {
+    max-width: 80%;
+    padding: 2rem;
+}
+
+.bible-image-container img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+@media (max-width: 768px) {
+    .bible-section-container {
+        height: auto;
+        flex-direction: column;
+        text-align: center;
+    }
+}
