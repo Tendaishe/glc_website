@@ -33,7 +33,9 @@ const Navbar = () => {
                     <li className="navbar-item">Gallery</li>
                 </ul>
 
-                <button className="navbar-button">Contact</button>
+                <button onClick={toggleMenu} className="navbar-button">
+                    Contact
+                </button>
             </div>
         </nav>
     );
