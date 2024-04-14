@@ -14,11 +14,12 @@
     justify-content: center;
     align-items: center;
     padding: 2rem;
-    height: 500px;
+    min-height: 500px;
 }
 
 .bible-text-container {
-    max-width: 50%;
+    max-width: 40%;
+    margin-right: 5rem;
 }
 
 .bible-section-container h1 {
@@ -27,6 +28,7 @@
 }
 
 .prayer-of-the-day {
+    text-align: left;
     position: relative;
     margin-bottom: 1rem;
     padding-left: 1rem;
@@ -71,6 +73,7 @@
 
     .bible-text-container {
         max-width: 80%;
+        margin-right: 0;
     }
 
     .bible-header {
