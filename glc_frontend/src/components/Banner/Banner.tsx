@@ -4,6 +4,7 @@ import "./Banner.css";
 
 const Banner = () => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    console.log(images);
 
     const goToPrevious = () => {
         const isFirstImage = currentImageIndex === 0;

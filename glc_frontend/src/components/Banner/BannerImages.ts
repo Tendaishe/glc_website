@@ -1,4 +1,4 @@
-import { Banner1Img, Banner2Img } from "../../assets/images";
+import { Banner1Img, Banner2Img, Banner3Img } from "../../assets/images";
 
 const images = [
     {
@@ -8,6 +8,10 @@ const images = [
     {
         label: "Second Picture",
         imgPath: Banner2Img,
+    },
+    {
+        label: "Third Picture",
+        imgPath: Banner3Img,
     },
 ];
 

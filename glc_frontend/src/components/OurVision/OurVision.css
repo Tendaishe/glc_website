@@ -28,7 +28,7 @@
     background-color: var(--background-secondary);
     border-radius: 20px;
     padding: 2rem;
-    width: 250px;
+    width: 200px;
     height: 200px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease;
