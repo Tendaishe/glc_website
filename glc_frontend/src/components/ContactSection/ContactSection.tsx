@@ -2,7 +2,7 @@ import "./ContactSection.css";
 
 const ContactSection = () => {
     return (
-        <div className="contact-section">
+        <div id="contact-section" className="contact-section">
             <h2>SEND US A MESSAGE</h2>
             <form className="contact-form">
                 <label htmlFor="name">Name</label>

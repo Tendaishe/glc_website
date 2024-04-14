@@ -1,7 +1,7 @@
 import {
     Banner,
-    OurVision,
-    BibleSection,
+    OurVisionSection,
+    PrayerofTheDay,
     EventsSection,
     GallerySection,
     ContactSection,
@@ -11,8 +11,8 @@ const Home = () => {
     return (
         <>
             <Banner></Banner>
-            <OurVision></OurVision>
-            <BibleSection></BibleSection>
+            <OurVisionSection></OurVisionSection>
+            <PrayerofTheDay></PrayerofTheDay>
             <EventsSection></EventsSection>
             <GallerySection></GallerySection>
             <ContactSection></ContactSection>

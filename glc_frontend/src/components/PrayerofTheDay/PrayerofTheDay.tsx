@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "./BibleSection.css";
+import "./PrayerofTheDay.css";
 import { ReadingImg } from "../../assets/images";
 import sanityClient from "../../utils/sanityClient";
 import IPrayer from "./IPrayer";
@@ -25,10 +25,9 @@ const BibleSection = () => {
 
     return (
         <div className="bible-section">
-            <h1 className="bible-header">Bible</h1>
+            <h1 className="bible-header">PRAYER OF THE DAY</h1>
             <div className="bible-section-container">
                 <div className="bible-text-container">
-                    <h2>PRAYER OF THE DAY</h2>
                     <p className="prayer-of-the-day">{prayer.text}</p>
                     <cite>{prayer.citation}</cite>
                 </div>

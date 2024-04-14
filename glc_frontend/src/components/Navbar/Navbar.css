@@ -66,10 +66,19 @@
     font-weight: bold;
 }
 
+.navbar-button a {
+    color: #fff;
+    text-decoration: none;
+}
+
 .hamburger-container {
     display: none;
     position: relative;
     z-index: 1001;
+}
+
+.hamburger-react div:hover {
+    color: var(--secondary-color);
 }
 
 .navbar-menu.open {

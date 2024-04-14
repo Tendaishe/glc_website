@@ -1,0 +1,29 @@
+#hero {
+    height: 80vh; /* Full viewport height */
+    background: url("../../../assets/images/Reading.png") no-repeat center
+        center/cover;
+    filter: brightness(0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.hero-content h1 {
+    color: #fff;
+    font-size: 2.5rem;
+    max-width: 80%;
+    text-align: center;
+    animation: fadeInUp 2s ease-out;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

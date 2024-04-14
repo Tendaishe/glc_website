@@ -1,0 +1,25 @@
+.verse-container {
+    background-color: #f8f8f8;
+    border-left: 5px solid var(--primary-color);
+    width: 90%;
+    padding: 1rem;
+    margin: 1.5rem 0;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.verse-container:hover {
+    transform: translateY(-10px);
+}
+
+.verse-reference {
+    color: var(--heading-color);
+    margin-bottom: 5px;
+}
+
+.verse-text {
+    color: var(--text-color);
+    font-size: 16px;
+    line-height: 1.5;
+}

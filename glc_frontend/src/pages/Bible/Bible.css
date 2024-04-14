@@ -1,0 +1,57 @@
+.bible-search-container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    max-width: 100%;
+    min-height: 500px;
+}
+
+.bible-search-heading {
+    color: var(--heading-color);
+    margin-bottom: 20px;
+}
+
+.search-box {
+    width: 30%;
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.4rem;
+    border-radius: 10px;
+}
+
+.search-button {
+    align-self: center;
+    cursor: pointer;
+    padding: 0.7rem 1.5rem;
+    margin: 0.5rem 0.5rem;
+    background-color: var(--secondary-color);
+    border: none;
+    color: var(--text-white-color);
+    cursor: pointer;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.verses-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+
+@media (max-width: 600px) {
+    .search-box {
+        width: 50%;
+    }
+}

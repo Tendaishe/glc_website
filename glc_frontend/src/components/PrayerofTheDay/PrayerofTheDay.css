@@ -86,12 +86,16 @@
     }
 
     .bible-text-container {
-        order: 2; /* Text below the image on small screens */
+        order: 2;
     }
 
     .bible-image-container {
-        order: 1; /* Image above the text on small screens */
-        padding: 0; /* Remove padding if not needed */
+        order: 1;
+        padding: 0;
+    }
+
+    .bible-image-container img {
+        width: 90%;
     }
 
     .bible-text-container cite {

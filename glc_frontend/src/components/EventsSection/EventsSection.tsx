@@ -12,11 +12,8 @@ const EventsSection = () => {
                         className="event-image"
                     />
                     <div className="event-info">
-                        <p className="event-date">Monday, May 22 at 6h30 PM</p>
-                        <h3 className="event-name">
-                            FIRST FEATURED EVENT NAME
-                        </h3>
-                        <p className="event-description">ON NEXT WEEK</p>
+                        <p className="event-date">@ 11am - 2pm</p>
+                        <h3 className="event-name">Sunday Service</h3>
                     </div>
                 </div>
                 <div className="event-card">
@@ -26,15 +23,12 @@ const EventsSection = () => {
                         className="event-image"
                     />
                     <div className="event-info">
-                        <p className="event-date">Monday, May 22 at 6h30 PM</p>
-                        <h3 className="event-name">
-                            FIRST FEATURED EVENT NAME
-                        </h3>
-                        <p className="event-description">ON NEXT WEEK</p>
+                        <p className="event-date">@ 19:00 – 21:00</p>
+                        <h3 className="event-name">Friday Prayers</h3>
                     </div>
                 </div>
             </div>
-            <button className="timetable-button">TIMETABLE</button>
+            {/* <button className="timetable-button">TIMETABLE</button> */}
         </div>
     );
 };

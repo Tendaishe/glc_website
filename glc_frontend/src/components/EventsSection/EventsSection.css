@@ -33,13 +33,7 @@
 }
 
 .event-date,
-.event-description {
-    color: #666;
-    margin: 0.5rem 0;
-}
-
 .event-name {
-    color: #333;
     margin: 0.5rem 0;
 }
 

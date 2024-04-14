@@ -3,7 +3,7 @@ import {
     GetInvolvedIcon,
     GivingBackIcon,
 } from "../../assets/icons";
-import "./OurVision.css";
+import "./OurVisionSection.css";
 
 const OurVision = () => {
     return (
