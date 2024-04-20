@@ -14,7 +14,7 @@ const Home = () => {
             <OurVisionSection></OurVisionSection>
             <PrayerofTheDay></PrayerofTheDay>
             <EventsSection></EventsSection>
-            <GallerySection></GallerySection>
+            <GallerySection limit={4}></GallerySection>
             <ContactSection></ContactSection>
         </>
     );

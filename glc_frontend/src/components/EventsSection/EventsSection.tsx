@@ -1,13 +1,13 @@
 import "./EventsSection.css";
-import { ReadingImg } from "../../assets/images";
+import { BiblePrayer, ServiceTimes } from "../../assets/images";
 const EventsSection = () => {
     return (
         <div className="events-section">
-            <h1 className="events-title">Events</h1>
+            <h1 className="events-title">Service Times</h1>
             <div className="events-container">
                 <div className="event-card">
                     <img
-                        src={ReadingImg}
+                        src={BiblePrayer}
                         alt="First Event"
                         className="event-image"
                     />
@@ -18,7 +18,7 @@ const EventsSection = () => {
                 </div>
                 <div className="event-card">
                     <img
-                        src={ReadingImg}
+                        src={ServiceTimes}
                         alt="Second Event"
                         className="event-image"
                     />
@@ -28,7 +28,6 @@ const EventsSection = () => {
                     </div>
                 </div>
             </div>
-            {/* <button className="timetable-button">TIMETABLE</button> */}
         </div>
     );
 };

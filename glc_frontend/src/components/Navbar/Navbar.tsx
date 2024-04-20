@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Divide as Hamburger } from "hamburger-react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import "./Navbar.css";
-import Logo from "../../assets/Logo.png";
 import navLinks from "./Navlinks";
 
 const Navbar = () => {
@@ -32,11 +31,7 @@ const Navbar = () => {
 
     return (
         <nav className="navbar">
-            <img
-                className="navbar-logo"
-                src={Logo}
-                alt="Greater Light Churh Logo"
-            />
+            <div className="navbar-logo">GREATER LIGHT CHURCH</div>
             <div className="hamburger-container">
                 <Hamburger
                     toggled={isMenuOpen}
