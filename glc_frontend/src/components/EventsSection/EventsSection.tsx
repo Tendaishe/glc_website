@@ -1,5 +1,5 @@
 import "./EventsSection.css";
-import { BiblePrayer, ServiceTimes } from "../../assets/images";
+import { EventImage1, EventImage2 } from "../../assets/images";
 const EventsSection = () => {
     return (
         <div className="events-section">
@@ -7,7 +7,7 @@ const EventsSection = () => {
             <div className="events-container">
                 <div className="event-card">
                     <img
-                        src={BiblePrayer}
+                        src={EventImage1}
                         alt="First Event"
                         className="event-image"
                     />
@@ -18,7 +18,7 @@ const EventsSection = () => {
                 </div>
                 <div className="event-card">
                     <img
-                        src={ServiceTimes}
+                        src={EventImage2}
                         alt="Second Event"
                         className="event-image"
                     />

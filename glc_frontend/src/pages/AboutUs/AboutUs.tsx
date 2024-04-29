@@ -1,4 +1,5 @@
 import { Poster, ChurchBanner } from "../../assets/images";
+import AboutTimelineComponent from "../../components/AboutTimelineComponent/AboutTimelineComponent";
 import "./AboutUs.css";
 
 const AboutUs = () => {
@@ -16,14 +17,35 @@ const AboutUs = () => {
                         Let your light shine and you will never walk in darkness
                         again.
                     </p>
-                    <a href="#about-section" className="btn-primary">
+                    <a href="#about-content" className="btn-primary">
                         Learn More
                     </a>
                 </div>
                 <img className="poster" src={Poster} alt="Church Poster" />
             </section>
 
-            <section id="about-section" className="about-sections">
+            <section className="our-vision-text">
+                <h2>Our Vision</h2>
+                <p>
+                    It is our vision to plant Greater Light Churches all over
+                    the world, Bible study groups, Home cell groups, Orphanage,
+                    Biblical institutions, Educational institutions and to build
+                    up broken communities through the love of God and charity
+                    works.
+                </p>
+            </section>
+            <section className="timeline">
+                <h2 className="timeline-heading">Our Beliefs</h2>
+                <AboutTimelineComponent />
+            </section>
+        </main>
+    );
+};
+
+export default AboutUs;
+
+{
+    /* <section id="about-section" className="about-sections">
                 <div className="section vision">
                     <h2>Our Vision</h2>
                     <div className="text">
@@ -86,9 +108,5 @@ const AboutUs = () => {
                         </p>
                     </div>
                 </div>
-            </section>
-        </main>
-    );
-};
-
-export default AboutUs;
+            </section> */
+}

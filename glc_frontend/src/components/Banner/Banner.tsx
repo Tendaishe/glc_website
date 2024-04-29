@@ -34,11 +34,10 @@ const Banner = () => {
                 ))}
                 <div className="banner-text">
                     <h2 className="welcome-header">
-                        WELCOME TO GREATER LIGHT CHURCH
+                        {images[currentImageIndex].title?.toUpperCase()}
                     </h2>
                     <h1 className="welcome-msg">
-                        LET YOUR LIGHT SHINE AND YOU WILL NEVER WALK IN DARKNESS
-                        AGAIN
+                        {images[currentImageIndex].message?.toUpperCase()}
                     </h1>
                 </div>
 

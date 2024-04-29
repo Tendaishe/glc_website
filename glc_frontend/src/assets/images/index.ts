@@ -6,3 +6,6 @@ export { default as ServiceTimes } from "./service_times.jpg";
 export { default as ReadingImg } from "./Reading.png";
 export { default as ChurchBanner } from "./churchbanner.jpg";
 export { default as Poster } from "./poster.jpg";
+export { default as EventImage1 } from "./event-image-1.jpg";
+export { default as EventImage2 } from "./event-image-2.jpg";
+export { default as PrayerImg } from "./Patrick.jpg";
