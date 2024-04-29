@@ -4,6 +4,11 @@
     padding: 3rem;
 }
 
+.footer-logo {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
 .footer-content {
     display: flex;
     justify-content: space-between;
