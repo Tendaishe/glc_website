@@ -1,15 +1,16 @@
 import "./GallerySection.css";
 import useGalleryHook, { IMedia } from "../../utils/useGalleryHook";
+import getImageUrl from "../../utils/getImageUrl";
 
 const GallerySection = ({ limit }: { limit?: number }) => {
     const { mediaItems, isLoading, error } = useGalleryHook(limit);
 
     const renderMediaItem = (item: IMedia) => {
-        if (item.mediaType === "image" && item.imageUrl) {
+        if (item.mediaType === "image" && item.imageAsset) {
             return (
                 <img
                     className="gallery-image"
-                    src={item.imageUrl}
+                    src={getImageUrl(item.imageAsset).url()}
                     alt="Gallery Image"
                 />
             );

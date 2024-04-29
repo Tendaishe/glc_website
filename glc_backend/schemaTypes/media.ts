@@ -1,4 +1,4 @@
-import {defineType} from 'sanity'
+import {ValidationContext, defineType} from 'sanity'
 import {Rule} from '@sanity/types'
 
 export default defineType({
@@ -25,18 +25,14 @@ export default defineType({
       validation: (Rule: Rule) => Rule.required(),
     },
     {
-      name: 'imageUrl',
-      title: 'Image URL',
-      type: 'url',
-      hidden: ({document}) => !document || document.mediaType !== 'image',
-      validation: (Rule: Rule) =>
-        Rule.custom((url, context) => {
-          const {mediaType}: any = context.document
-          if (mediaType === 'image' && !url) {
-            return 'Image URL is required for media type "Image"'
-          }
-          if (mediaType === 'video' && url) {
-            return 'Image URL must be empty when media type is "Video"'
+      name: 'imageFile',
+      title: 'Image File',
+      type: 'image',
+      hidden: ({document}) => document?.mediaType !== 'image',
+      validation: (Rule) =>
+        Rule.custom((file, context: ValidationContext) => {
+          if (context.document?.mediaType === 'image' && !file) {
+            return 'Image file is required for media type "Image"'
           }
           return true
         }),
@@ -51,9 +47,6 @@ export default defineType({
           const {mediaType}: any = context.document
           if (mediaType === 'video' && !url) {
             return 'Video URL is required for media type "Video"'
-          }
-          if (mediaType === 'image' && url) {
-            return 'Video URL must be empty when media type is "Image"'
           }
           return true
         }),

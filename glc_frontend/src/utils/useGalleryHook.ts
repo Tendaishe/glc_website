@@ -5,7 +5,9 @@ export interface IMedia {
     _id: string;
     title: string;
     mediaType: "image" | "video";
-    imageUrl?: string;
+    imageAsset?: {
+        _ref: string;
+    };
     videoUrl?: string;
 }
 
@@ -19,7 +21,7 @@ const useGalleryHook = (limit?: number) => {
             _id,
             title,
             mediaType,
-            imageUrl,
+            "imageAsset": imageFile.asset->,
             videoUrl
         }`;
 
