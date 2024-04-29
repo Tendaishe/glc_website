@@ -1,7 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { SocialIcon } from "react-social-icons";
 import "./FooterSection.css";
-import Logo from "../../assets/Logo.png";
 import navLinks from "../Navbar/Navlinks";
 
 const scrollToTop = () => {
@@ -15,7 +14,7 @@ const FooterSection = () => {
         <footer className="footer">
             <div className="footer-content">
                 <div className="footer-section footer-branding">
-                    <img src={Logo} alt="Greater Light Church Logo" />
+                    <div className="footer-logo"> Greater Light Church </div>
                     <p>&copy; COPYRIGHT GREATER LIGHT CHURCH 2024</p>
                     <p>(480) 555-0103</p>
                     <p>80 MOTT STREET, BIRMINGHAM B19 3HD</p>
