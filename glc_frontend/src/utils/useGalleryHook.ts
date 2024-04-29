@@ -17,12 +17,15 @@ const useGalleryHook = (limit?: number) => {
     const [error, setError] = useState<Error | null>(null);
 
     useEffect(() => {
-        const query = `*[_type == "media"]${limit ? `[0...${limit}]` : ""} {
+        const query = `*[_type == "media"] | order(_createdAt desc) ${
+            limit ? `[0...${limit}]` : ""
+        } {
             _id,
             title,
             mediaType,
             "imageAsset": imageFile.asset->,
-            videoUrl
+            videoUrl,
+            _createdAt
         }`;
 
         sanityClient

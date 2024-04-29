@@ -31,7 +31,9 @@ const Navbar = () => {
 
     return (
         <nav className="navbar">
-            <div className="navbar-logo">GREATER LIGHT CHURCH</div>
+            <a href="/" className="navbar-logo">
+                GREATER LIGHT CHURCH
+            </a>
             <div className="hamburger-container">
                 <Hamburger
                     toggled={isMenuOpen}

@@ -4,6 +4,12 @@ import "./FooterSection.css";
 import Logo from "../../assets/Logo.png";
 import navLinks from "../Navbar/Navlinks";
 
+const scrollToTop = () => {
+    window.scrollTo({
+        top: 0,
+    });
+};
+
 const FooterSection = () => {
     return (
         <footer className="footer">
@@ -20,7 +26,9 @@ const FooterSection = () => {
                     <ul>
                         {navLinks.map((link) => (
                             <li key={link.path}>
-                                <NavLink to={link.path}>{link.label}</NavLink>
+                                <NavLink to={link.path} onClick={scrollToTop}>
+                                    {link.label}
+                                </NavLink>
                             </li>
                         ))}
                     </ul>
@@ -31,20 +39,20 @@ const FooterSection = () => {
                         <SocialIcon
                             style={{ height: 40, width: 40 }}
                             bgColor="#ff7f50"
-                            className="social-icon twitter"
-                            url="https://twitter.com"
+                            className="social-icon facebook"
+                            url="https://www.facebook.com/greaterlightchurchbirminghamuk"
                         />
                         <SocialIcon
                             bgColor="#ff7f50"
                             style={{ height: 40, width: 40 }}
                             className="social-icon instagram"
-                            url="https://instagram.com"
+                            url="https://www.instagram.com/greaterlightchurchbirminghamuk/"
                         />
                         <SocialIcon
                             style={{ height: 40, width: 40 }}
                             bgColor="#ff7f50"
-                            className="social-icon linkedin"
-                            url="https://linkedin.com"
+                            className="social-icon youtube"
+                            url="https://www.youtube.com/@greaterlightchurch2686"
                         />
                     </div>
                 </div>
