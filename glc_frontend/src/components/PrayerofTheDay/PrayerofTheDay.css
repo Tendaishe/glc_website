@@ -1,0 +1,104 @@
+.bible-section {
+    text-align: center;
+    background-color: #fff;
+    padding-top: 2rem;
+}
+
+.bible-header {
+    color: var(--heading-color);
+    margin-bottom: -5rem;
+}
+
+.bible-section-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    min-height: 500px;
+}
+
+.bible-text-container {
+    max-width: 40%;
+    margin-right: 5rem;
+}
+
+.bible-section-container h1 {
+    color: var(--heading-color);
+    margin-bottom: 1rem;
+}
+
+.prayer-of-the-day {
+    text-align: left;
+    position: relative;
+    margin-bottom: 1rem;
+    padding-left: 1rem;
+}
+
+.prayer-of-the-day::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 5px;
+    height: 100%;
+    background-color: #000;
+}
+
+.bible-text-container cite {
+    display: block;
+    color: var(--text-color);
+    font-weight: bold;
+    font-style: normal;
+    text-align: end;
+}
+
+.bible-image-container {
+    max-width: 80%;
+    padding: 2rem;
+}
+
+.bible-image-container img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+@media (max-width: 768px) {
+    .bible-section-container {
+        height: auto;
+        flex-direction: column;
+    }
+
+    .bible-text-container {
+        max-width: 80%;
+        margin-right: 0;
+    }
+
+    .bible-header {
+        margin-bottom: 0;
+    }
+
+    .bible-text-container,
+    .bible-image-container {
+        max-width: 100%;
+    }
+
+    .bible-text-container {
+        order: 2;
+    }
+
+    .bible-image-container {
+        order: 1;
+        padding: 0;
+    }
+
+    .bible-image-container img {
+        width: 90%;
+    }
+
+    .bible-text-container cite {
+        text-align: center;
+    }
+}

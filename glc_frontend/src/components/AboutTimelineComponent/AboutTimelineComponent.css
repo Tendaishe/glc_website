@@ -1,0 +1,18 @@
+.about-content {
+    padding: 0 2rem;
+}
+
+.about-title {
+    color: var(--heading-color);
+    padding: 0;
+}
+
+.about-text {
+    color: var(--text-color);
+}
+
+@media (max-width: 500px) {
+    .about-content {
+        padding: 0;
+    }
+}

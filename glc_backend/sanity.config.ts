@@ -7,7 +7,7 @@ export default defineConfig({
   name: 'default',
   title: 'glc_website',
 
-  projectId: 'cdm2r9og',
+  projectId: '9rhu7hmf',
   dataset: 'production',
 
   plugins: [structureTool(), visionTool()],
