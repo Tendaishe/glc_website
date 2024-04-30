@@ -17,6 +17,7 @@
 }
 
 .navbar-menu {
+    text-align: center;
     margin-left: 2rem;
     width: 100%;
     display: flex;
