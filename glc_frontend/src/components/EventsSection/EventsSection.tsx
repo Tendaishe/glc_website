@@ -1,32 +1,66 @@
+import { useState, useEffect } from "react";
 import "./EventsSection.css";
-import { EventImage1, EventImage2 } from "../../assets/images";
+import sanityClient from "../../utils/sanityClient";
+
+interface Event {
+    name: string;
+    date?: string;
+    startTime: string;
+    endTime: string;
+    imageUrl: string;
+}
+
 const EventsSection = () => {
+    const [events, setEvents] = useState<Event[]>([]);
+
+    useEffect(() => {
+        sanityClient
+            .fetch(
+                `
+            *[_type == "event"]{
+                name,
+                date,
+                startTime,
+                endTime,
+                "imageUrl": image.asset->url
+            } | order(date asc)
+             `
+            )
+            .then((data) => {
+                const currentEvents = data.filter((event: Event) => {
+                    return !event.date || new Date(event.date) >= new Date();
+                });
+                setEvents(currentEvents);
+            })
+            .catch(console.error);
+    }, []);
+
     return (
         <div className="events-section">
-            <h1 className="events-title">Service Times</h1>
+            <h1 className="events-title">Events</h1>
             <div className="events-container">
-                <div className="event-card">
-                    <img
-                        src={EventImage1}
-                        alt="First Event"
-                        className="event-image"
-                    />
-                    <div className="event-info">
-                        <p className="event-date">@ 11am - 2pm</p>
-                        <h3 className="event-name">Sunday Service</h3>
+                {events.map((event, index) => (
+                    <div key={index} className="event-card">
+                        <img
+                            src={event.imageUrl}
+                            alt={event.name}
+                            className="event-image"
+                        />
+                        <div className="event-info">
+                            <p className="event-date">
+                                {event.date && (
+                                    <span className="event-date">
+                                        {new Date(
+                                            event.date
+                                        ).toLocaleDateString()}
+                                    </span>
+                                )}{" "}
+                                @ {event.startTime} - {event.endTime}
+                            </p>
+                            <h3 className="event-name">{event.name}</h3>
+                        </div>
                     </div>
-                </div>
-                <div className="event-card">
-                    <img
-                        src={EventImage2}
-                        alt="Second Event"
-                        className="event-image"
-                    />
-                    <div className="event-info">
-                        <p className="event-date">@ 19:00 – 21:00</p>
-                        <h3 className="event-name">Friday Prayers</h3>
-                    </div>
-                </div>
+                ))}
             </div>
         </div>
     );
