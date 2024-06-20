@@ -1,31 +1,59 @@
-import { useState } from "react";
-import images from "./BannerImages";
+import { useState, useEffect } from "react";
+import sanityClient from "../../utils/sanityClient";
 import "./Banner.css";
+
+interface BannerContent {
+    title: string;
+    message: string;
+    imageUrl: string;
+}
 
 const Banner = () => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [bannerContent, setBannerContent] = useState<BannerContent[]>([]);
+
+    useEffect(() => {
+        sanityClient
+            .fetch(
+                `
+            *[_type == "banner"] | order(order asc){
+                title,
+                message,
+                "imageUrl": image.asset->url
+            }
+             `
+            )
+            .then((data) => {
+                setBannerContent(data);
+            })
+            .catch(console.error);
+    }, []);
 
     const goToPrevious = () => {
         const isFirstImage = currentImageIndex === 0;
         const newIndex = isFirstImage
-            ? images.length - 1
+            ? bannerContent.length - 1
             : currentImageIndex - 1;
         setCurrentImageIndex(newIndex);
     };
 
     const goToNext = () => {
-        const isLastImage = currentImageIndex === images.length - 1;
+        const isLastImage = currentImageIndex === bannerContent.length - 1;
         const newIndex = isLastImage ? 0 : currentImageIndex + 1;
         setCurrentImageIndex(newIndex);
     };
 
+    if (!bannerContent.length) {
+        return <div>Loading...</div>;
+    }
+
     return (
         <>
             <div className="banner-container">
-                {images.map((image, index) => (
+                {bannerContent.map((content, index) => (
                     <img
-                        key={image.label}
-                        src={image.imgPath}
+                        key={content.title}
+                        src={content.imageUrl}
                         alt={`Slide ${index}`}
                         className={`banner-image ${
                             index === currentImageIndex ? "active" : ""
@@ -34,10 +62,18 @@ const Banner = () => {
                 ))}
                 <div className="banner-text">
                     <h2 className="welcome-header">
-                        {images[currentImageIndex].title?.toUpperCase()}
+                        {bannerContent[currentImageIndex].title
+                            ? bannerContent[
+                                  currentImageIndex
+                              ].title.toUpperCase()
+                            : ""}
                     </h2>
                     <h1 className="welcome-msg">
-                        {images[currentImageIndex].message?.toUpperCase()}
+                        {bannerContent[currentImageIndex].message
+                            ? bannerContent[
+                                  currentImageIndex
+                              ].message.toUpperCase()
+                            : ""}
                     </h1>
                 </div>
 
@@ -48,7 +84,7 @@ const Banner = () => {
                     &#9654;
                 </button>
                 <div className="banner-indicators">
-                    {images.map((_, index) => (
+                    {bannerContent.map((_, index) => (
                         <button
                             key={index}
                             className={`banner-indicator ${

@@ -38,6 +38,20 @@ export default defineType({
         }),
     },
     {
+      name: 'thumbnail',
+      title: 'Thumbnail',
+      type: 'image',
+      description: 'Upload a custom thumbnail for the media.',
+      hidden: ({document}) => document?.mediaType !== 'video',
+      validation: (Rule: Rule) =>
+        Rule.custom((thumbnail, context: ValidationContext) => {
+          if (context.document?.mediaType === 'video' && !thumbnail) {
+            return 'Thumbnail is required for media type "Video"'
+          }
+          return true
+        }),
+    },
+    {
       name: 'videoUrl',
       title: 'Video URL',
       type: 'url',

@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import "./PrayerofTheDay.css";
-import { ReadingImg } from "../../assets/images";
 import sanityClient from "../../utils/sanityClient";
 import IPrayer from "./IPrayer";
 
@@ -12,7 +11,8 @@ const BibleSection = () => {
             .fetch(
                 `*[_type == "prayerOfTheDay"][0] {
                     text,
-                    citation
+                    citation,
+                    "imageUrl": image.asset->url
                 }`
             )
             .then((data) => {
@@ -32,7 +32,11 @@ const BibleSection = () => {
                     <cite>{prayer.citation}</cite>
                 </div>
                 <div className="bible-image-container">
-                    <img src={ReadingImg} alt="Person reading a Bible" />
+                    <img
+                        src={prayer.imageUrl}
+                        alt="Prayer Image"
+                        className="interactive-image"
+                    />
                 </div>
             </div>
         </div>

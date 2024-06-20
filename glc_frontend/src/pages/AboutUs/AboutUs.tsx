@@ -1,30 +1,59 @@
-import { Poster, ChurchBanner } from "../../assets/images";
+import { useEffect, useState } from "react";
 import AboutTimelineComponent from "../../components/AboutTimelineComponent/AboutTimelineComponent";
 import "./AboutUs.css";
+import sanityClient from "../../utils/sanityClient";
+
+interface AboutUsData {
+    bannerUrl: string;
+    posterUrl: string;
+    heading: string;
+    text: string;
+}
 
 const AboutUs = () => {
+    const [aboutUsData, setAboutUsData] = useState<AboutUsData | null>(null);
+
+    useEffect(() => {
+        sanityClient
+            .fetch(
+                `
+                *[_type == "aboutUs"][0]{
+                    "bannerUrl": banner.asset->url,
+                    "posterUrl": poster.asset->url,
+                    heading,
+                    text,
+            }
+             `
+            )
+            .then((data) => setAboutUsData(data))
+            .catch(console.error);
+    }, []);
+
+    if (!aboutUsData) return <div>Loading...</div>;
+
     return (
         <main className="about-main">
-            <section className="about-hero">
+            <section id="about-section" className="about-hero">
                 <img
-                    src={ChurchBanner}
+                    src={aboutUsData.bannerUrl}
                     alt="Church Banner"
                     className="hero-image"
                 />
                 <div className="hero-text">
-                    <h1>Welcome to Greater Light Church</h1>
-                    <p>
-                        Let your light shine and you will never walk in darkness
-                        again.
-                    </p>
+                    <h1>{aboutUsData.heading}</h1>
+                    <p>{aboutUsData.text}</p>
                     <a href="#about-content" className="btn-primary">
                         Learn More
                     </a>
                 </div>
-                <img className="poster" src={Poster} alt="Church Poster" />
+                <img
+                    className="poster"
+                    src={aboutUsData.posterUrl}
+                    alt="Church Poster"
+                />
             </section>
 
-            <section className="our-vision-text">
+            <section id="vision-section" className="our-vision-text">
                 <h2>Our Vision</h2>
                 <p>
                     It is our vision to plant Greater Light Churches all over
@@ -34,7 +63,7 @@ const AboutUs = () => {
                     works.
                 </p>
             </section>
-            <section className="timeline">
+            <section id="belief-section" className="timeline">
                 <h2 className="timeline-heading">Our Beliefs</h2>
                 <AboutTimelineComponent />
             </section>
@@ -43,70 +72,3 @@ const AboutUs = () => {
 };
 
 export default AboutUs;
-
-{
-    /* <section id="about-section" className="about-sections">
-                <div className="section vision">
-                    <h2>Our Vision</h2>
-                    <div className="text">
-                        <p>
-                            We are a bible believing church that solely believes
-                            and teaches the death and resurrection of Jesus
-                            Christ on the third day for the remissions of sins.
-                            Which is the salvation of man. (Romans 10:8–9)
-                        </p>
-                        <p>
-                            Matthew 4:16-17 "The people which sat in darkness
-                            saw great light; and to them which sat in the region
-                            and shadow of death light is sprung up."
-                        </p>
-                        <p>
-                            It is our vision to plant Greater Light Churches all
-                            over the world, create Bible study groups, home cell
-                            groups, orphanages, biblical and educational
-                            institutions, and to build up broken communities
-                            through the love of God and charity works.
-                        </p>
-                    </div>
-                </div>
-
-                <div className="section values">
-                    <h2>Heart of Greater Light Church</h2>
-                    <div className="text">
-                        <p>
-                            SHARE UNCONDITIONAL LOVE OF GOD WITH EVERYONE AROUND
-                            US...
-                        </p>
-                        <p>You are created for greater things.</p>
-                    </div>
-                </div>
-
-                <div className="section belief">
-                    <h2>Our Statement Of Faith/Belief</h2>
-                    <div className="text">
-                        <p>
-                            BIBLE (THE WORD OF GOD) BOTH OLD AND NEW TESTAMENT
-                            IS INFALLIBLE AUTHORITATIVE AND IS WITHOUT ERROR…
-                        </p>
-                    </div>
-                </div>
-
-                <div className="section mission">
-                    <h2>Our Mission</h2>
-                    <div className="text">
-                        <p>
-                            Mark 26:15-18 And he said unto them, Go ye into all
-                            the world, and preach the gospel to every creature.
-                            16 He that believeth and is baptized shall be saved;
-                            but he that believeth not shall be damned. 17 And
-                            these signs shall follow them that believe; In my
-                            name shall they cast out devils; they shall speak
-                            with new tongues; 18 They shall take up serpents;
-                            and if they drink any deadly thing, it shall not
-                            hurt them; they shall lay hands on the sick, and
-                            they shall recover.
-                        </p>
-                    </div>
-                </div>
-            </section> */
-}

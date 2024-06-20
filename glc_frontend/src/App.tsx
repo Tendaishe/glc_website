@@ -7,6 +7,7 @@ import ServiceTimes from "./pages/ServiceTimes/ServiceTimes";
 import Bible from "./pages/Bible/Bible";
 import { FooterSection } from "./components/index";
 import GalleryPage from "./pages/GalleryPage/GalleryPage";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 const App = () => {
     return (

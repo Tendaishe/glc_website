@@ -3,6 +3,9 @@ import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemaTypes'
 
+const singletonActions = new Set(['publish', 'discardChanges', 'restore'])
+const singletonTypes = new Set(['aboutUs'])
+
 export default defineConfig({
   name: 'default',
   title: 'glc_website',

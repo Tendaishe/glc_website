@@ -21,5 +21,12 @@ export default defineType({
       validation: (Rule) =>
         Rule.max(50).warning('Citation text should be no more than 50 characters long'),
     },
+    {
+      name: 'image',
+      title: 'Image',
+      type: 'image',
+      description: 'Upload an image',
+      validation: (Rule) => Rule.required(),
+    },
   ],
 })
