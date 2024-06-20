@@ -28,6 +28,12 @@
     overflow: hidden;
 }
 
+.event-card:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: transform 0.1s ease-out;
+}
+
 .event-image {
     border-radius: 10px;
     width: 250px;
@@ -56,6 +62,74 @@
     font-weight: bold;
 }
 
+/* Modal */
+.event-modal {
+    background-color: #fff;
+    margin: 5% auto;
+    width: 70%;
+    max-width: 550px;
+    max-height: 80vh;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+}
+
+.event-modal-overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    padding: 10px;
+    z-index: 100000;
+}
+
+.event-modal-close-button {
+    color: var(--text-white-color);
+    position: absolute;
+    top: -35px;
+    right: -30px;
+    font-size: 36px;
+    font-weight: bold;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 100;
+}
+
+.event-modal-close-button:hover {
+    transform: scale(1.1);
+    transition: transform 0.1s ease-in-out;
+}
+
+.event-modal-image {
+    margin-top: 10px;
+    border-radius: 10px;
+    width: 95%;
+    height: 300px;
+    max-height: 300px;
+}
+
+.event-modal-name {
+    margin: 5px;
+}
+
+.event-modal-date {
+    margin-bottom: 5px 0px 20px 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.event-description {
+    margin: 10px 20px 20px 20px;
+    font-size: 16px;
+    text-align: left;
+}
+
 @media (max-width: 500px) {
     .events-container {
         flex-direction: column;
@@ -63,5 +137,18 @@
 
     .event-card {
         margin: 0;
+    }
+
+    .event-modal-name {
+        margin: 5px;
+    }
+
+    .event-modal-date {
+        margin: 0;
+    }
+
+    .event-description {
+        margin: 10px 20px 20px 20px;
+        font-size: 12px;
     }
 }

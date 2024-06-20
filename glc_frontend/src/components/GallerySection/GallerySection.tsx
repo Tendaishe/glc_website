@@ -10,16 +10,19 @@ Modal.setAppElement("#root");
 const GallerySection = ({ limit }: { limit?: number }) => {
     const { mediaItems, isLoading, error } = useGalleryHook(limit);
     const [modalIsOpen, setModalIsOpen] = useState(false);
-    const [currentImage, setCurrentImage] = useState("");
+    const [currentMedia, setCurrentMedia] = useState<{
+        url: string;
+        type: string;
+    } | null>(null);
 
-    const openModal = (imageUrl: string) => {
-        setCurrentImage(imageUrl);
+    const openModal = (media: { url: string; type: string }) => {
+        setCurrentMedia(media);
         setModalIsOpen(true);
     };
 
     const closeModal = () => {
         setModalIsOpen(false);
-        setCurrentImage("");
+        setCurrentMedia(null);
     };
 
     const renderMediaItem = (item: IMedia) => {
@@ -30,21 +33,31 @@ const GallerySection = ({ limit }: { limit?: number }) => {
                     key={item._id}
                     className="gallery-image"
                     src={imageUrl}
-                    alt="Gallery Image"
-                    onClick={() => openModal(imageUrl)}
+                    alt={item.title}
+                    onClick={() => openModal({ url: imageUrl, type: "image" })}
                 />
             );
         } else if (item.mediaType === "video" && item.videoUrl) {
+            const thumbnailUrl = item.thumbnail;
             const embedUrl = getYouTubeEmbedUrl(item.videoUrl);
             if (embedUrl) {
                 return (
-                    <iframe
-                        className="gallery-image"
-                        src={embedUrl}
-                        title="Gallery Video"
-                        frameBorder="0"
-                        allowFullScreen
-                    />
+                    <>
+                        <img
+                            className="gallery-image"
+                            src={thumbnailUrl}
+                            alt={item.title}
+                            onClick={() =>
+                                openModal({ url: embedUrl, type: "video" })
+                            }
+                        />
+                        <div className="video-icon-overlay">
+                            <i
+                                className="fas fa-play-circle"
+                                aria-hidden="true"
+                            ></i>
+                        </div>
+                    </>
                 );
             }
             return null;
@@ -54,7 +67,7 @@ const GallerySection = ({ limit }: { limit?: number }) => {
 
     function getYouTubeEmbedUrl(url: string) {
         const regExp =
-            /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+            /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
         const match = url.match(regExp);
 
         if (match && match[2].length === 11) {
@@ -100,18 +113,31 @@ const GallerySection = ({ limit }: { limit?: number }) => {
             <Modal
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}
-                contentLabel="Image Modal"
-                className="image-modal"
-                overlayClassName="image-modal-overlay"
+                contentLabel="Media Modal"
+                className="media-modal"
+                overlayClassName="media-modal-overlay"
             >
                 <button onClick={closeModal} className="close-button">
                     &times;
                 </button>
-                <img
-                    src={currentImage}
-                    alt="Modal Content"
-                    className="modal-image"
-                />
+                {currentMedia?.type === "image" ? (
+                    <img
+                        src={currentMedia.url}
+                        alt="Modal Content"
+                        className="modal-image"
+                    />
+                ) : (
+                    <div className="iframe-container">
+                        <iframe
+                            id="iframe"
+                            src={currentMedia?.url}
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                            className="modal-media video"
+                        />
+                    </div>
+                )}
             </Modal>
         </div>
     );

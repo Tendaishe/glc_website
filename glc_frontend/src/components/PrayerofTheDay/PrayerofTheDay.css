@@ -59,8 +59,8 @@
 }
 
 .bible-image-container img {
-    width: 100%;
-    height: auto;
+    width: 300px; /* Fixed width */
+    height: 300px; /* Fixed height */
     object-fit: cover;
     border-radius: 20px;
 }
@@ -96,6 +96,7 @@
 
     .bible-image-container img {
         width: 90%;
+        height: auto;
     }
 
     .bible-text-container cite {

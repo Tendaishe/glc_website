@@ -1,3 +1,4 @@
+/* GallerySection.css */
 .gallery-section {
     text-align: center;
     padding: 4rem;
@@ -21,6 +22,7 @@
     height: 250px;
     margin: 1rem;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .gallery-image {
@@ -32,12 +34,21 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.video-icon-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+    color: rgba(255, 255, 255, 0.8);
+    pointer-events: none;
+}
+
 .item-title {
-    margin-top: 2rem;
+    margin-top: 0.5rem;
     font-weight: bold;
     color: #333;
     text-align: center;
-    margin-top: 0.5rem;
 }
 
 .more-gallery-container {
@@ -47,39 +58,38 @@
 
 .more-gallery-button {
     display: inline-block;
-    align-self: center;
     padding: 0.7rem 1.5rem;
-    margin: 0.5rem 0.5rem;
+    margin: 0.5rem;
     background-color: var(--secondary-color);
-    color: var(--text-white-color) !important; 
+    color: var(--text-white-color);
     border: none;
     cursor: pointer;
     border-radius: 10px;
     font-weight: bold;
-    text-decoration: none; 
-    text-align: center; 
+    text-decoration: none;
+    text-align: center;
 }
 
-/* Styles for the modal overlay */
-.image-modal-overlay {
+/* Media Modal */
+.media-modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 0, 0, 0.95);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 1000;
 }
 
-/* Styles for the modal content */
-.image-modal {
+.media-modal {
     position: relative;
+    /* width: 70%; */
     max-width: 90%;
     max-height: 90%;
-    border: 1px solid var(--secondary-color);
+    /* border: 1px solid var(--secondary-color); */
     border-radius: 10px;
     outline: none;
     display: flex;
@@ -87,14 +97,22 @@
     align-items: center;
 }
 
-/* Styles for the modal image */
-.modal-image {
-    max-width: 100%;
-    max-height: 80vh;
+.modal-media {
+    width: 100%;
+    /* height: auto; */
+    max-height: 100%;
     border-radius: 10px;
 }
 
-/* Styles for the close button */
+.modal-image {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
 .close-button {
     position: absolute;
     top: -20px;
@@ -108,6 +126,20 @@
     outline: none;
 }
 
+.iframe-container {
+    width: 70vw;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#iframe {
+    width: 100%;
+    height: 100%;
+}
+
 @media (max-width: 500px) {
     .gallery {
         flex-wrap: nowrap;
@@ -117,8 +149,17 @@
         width: 110%;
     }
 
-    .image-modal {
-        max-width: 80%;
-        max-height: 100%;
+    .media-modal {
+        width: auto;
+        height: auto;
+        max-width: 90%;
+        max-height: 50vh;
+        object-fit: contain;
+        border-radius: 10px;
+    }
+
+    #iframe {
+        width: 100%;
+        height: 100%;
     }
 }

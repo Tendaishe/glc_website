@@ -1,0 +1,53 @@
+/* Pagination.css */
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    flex-wrap: wrap; /* Allow items to wrap to the next line on smaller screens */
+}
+
+.pagination li {
+    margin: 5px; /* Adjusted margin for better spacing on smaller screens */
+}
+
+.pagination a {
+    padding: 8px 16px;
+    text-decoration: none;
+    color: #007bff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block; /* Ensure links are block elements for better touch support */
+}
+
+.pagination a:hover {
+    background-color: #f1f1f1;
+}
+
+.pagination .active a {
+    background-color: #007bff;
+    color: white;
+    border: 1px solid #007bff;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .pagination a {
+        padding: 6px 12px; /* Reduce padding for smaller screens */
+    }
+
+    .pagination li {
+        margin: 3px; /* Adjust margin for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .pagination a {
+        padding: 4px 8px; /* Further reduce padding for very small screens */
+    }
+
+    .pagination li {
+        margin: 2px; /* Further adjust margin for very small screens */
+    }
+}

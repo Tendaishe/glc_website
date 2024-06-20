@@ -1,6 +1,7 @@
 import { useState } from "react";
 import IVerse from "./IVerse";
 import "./Bible.css";
+import Pagination from "./Pagination";
 import Verse from "../../components/Verse/Verse";
 
 const Bible = () => {
@@ -8,6 +9,17 @@ const Bible = () => {
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(false);
     const [searchAttempted, setSearchAttempted] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const versesPerPage = 10;
+
+    const handlePageClick = (data: any) => {
+        setCurrentPage(data.selected + 1);
+        window.scrollTo(0, 0);
+    };
+
+    const indexOfFirstVerse = (currentPage - 1) * versesPerPage;
+    const indexOfLastVerse = indexOfFirstVerse + versesPerPage;
+    const currentVerses = results.slice(indexOfFirstVerse, indexOfLastVerse);
 
     const handleInputChange = (event: any) => {
         setQuery(event.target.value);
@@ -17,26 +29,60 @@ const Bible = () => {
         const parser = new DOMParser();
         const doc = parser.parseFromString(htmlString, "text/html");
         const pElements = doc.querySelectorAll("p");
-        let textContent = "";
+        let verses: IVerse[] = [];
 
         pElements.forEach((p) => {
-            const spans = p.querySelectorAll("span.v");
-            spans.forEach((span) => span.remove());
-            textContent += p.textContent + " ";
+            const childNodes = Array.from(p.childNodes);
+            let currentReference = "";
+            let verseText = "";
+
+            childNodes.forEach((node) => {
+                // Check if the node is an Element and has the required properties
+                if (
+                    node.nodeType === Node.ELEMENT_NODE &&
+                    (node as Element).tagName === "SPAN" &&
+                    (node as Element).classList.contains("v")
+                ) {
+                    // If we already have verseText, push the previous verse to the array
+                    if (verseText) {
+                        verses.push({
+                            id: currentReference,
+                            text: `<p>${verseText.trim()}</p>`,
+                            reference: currentReference,
+                        });
+                    }
+                    // Reset for the next verse
+                    currentReference =
+                        (node as Element).getAttribute("data-sid") || ""; // Safely accessing getAttribute
+                    verseText = ""; // Reset verse text
+                } else {
+                    // Accumulate text until the next verse span is found
+                    verseText += node.textContent || "";
+                }
+            });
+
+            // Add the last verse in the paragraph if any text has been collected
+            if (verseText && currentReference) {
+                verses.push({
+                    id: currentReference,
+                    text: `<p>${verseText.trim()}</p>`,
+                    reference: currentReference,
+                });
+            }
         });
 
-        return textContent.trim();
+        return verses;
     };
 
     const searchBibleVerses = async () => {
         if (!query.trim()) return;
         setLoading(true);
         setSearchAttempted(true);
+        setCurrentPage(1);
 
         const bibleId = import.meta.env.VITE_BIBLE_ID;
         const apiKey = import.meta.env.VITE_BIBLE_API_KEY;
 
-        // Construct the URL with additional parameters
         const url = `https://api.scripture.api.bible/v1/bibles/${bibleId}/search?query=${encodeURIComponent(
             query
         )}&sort=relevance`;
@@ -55,26 +101,32 @@ const Bible = () => {
             }
 
             const data = await response.json();
-            console.log("Response data:", data); // Debugging
 
             if (data.data && data.data.verses) {
-                setResults(data.data.verses);
+                const formattedVerses = data.data.verses.map((verse: any) => ({
+                    id: verse.id,
+                    text: `<p>${verse.text}</p>`,
+                    reference: verse.reference,
+                }));
+                setResults(formattedVerses);
             } else if (data.data && data.data.passages) {
-                setResults(
-                    data.data.passages.map((passage: any) => ({
+                const allVerses = data.data.passages.flatMap((passage: any) =>
+                    extractTextFromHTML(passage.content).map((verse: any) => ({
                         id: passage.id,
-                        text: extractTextFromHTML(passage.content),
-                        reference: passage.reference,
+                        text: verse.text,
+                        reference: verse.reference,
                     }))
                 );
+                setResults(allVerses);
             } else {
                 setResults([]);
             }
         } catch (error) {
             console.error("Error fetching data:", error);
             setResults([]);
+        } finally {
+            setLoading(false);
         }
-        setLoading(false);
     };
 
     const handleKeyDown = (event: any) => {
@@ -103,11 +155,19 @@ const Bible = () => {
                 <p>Loading...</p>
             ) : searchAttempted ? (
                 results.length > 0 ? (
-                    <ul className="verses-container">
-                        {results.map((verse: IVerse, index) => (
-                            <Verse key={index} {...verse} />
-                        ))}
-                    </ul>
+                    <>
+                        <ul className="verses-container">
+                            {currentVerses.map((verse: IVerse, index) => (
+                                <Verse key={index} {...verse} />
+                            ))}
+                        </ul>
+                        <Pagination
+                            pageCount={Math.ceil(
+                                results.length / versesPerPage
+                            )}
+                            onPageChange={handlePageClick}
+                        />
+                    </>
                 ) : (
                     <p>No results found.</p>
                 )

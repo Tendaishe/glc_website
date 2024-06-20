@@ -22,13 +22,17 @@
     margin-top: 1rem;
 }
 
+.card-link {
+    text-decoration: none;
+}
+
 .card {
-    margin: 2rem;
+    margin: 2rem 2rem 2rem 1.5rem;
     background-color: var(--background-secondary);
     border-radius: 10px;
     padding: 2rem;
     width: 200px;
-    min-height: 270px;
+    min-height: 280px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease;
 }
