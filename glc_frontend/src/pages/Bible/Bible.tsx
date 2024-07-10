@@ -80,22 +80,12 @@ const Bible = () => {
         setSearchAttempted(true);
         setCurrentPage(1);
 
-        const bibleId = import.meta.env.VITE_BIBLE_ID;
-        const apiKey = import.meta.env.VITE_BIBLE_API_KEY;
-
-        const url = `https://api.scripture.api.bible/v1/bibles/${bibleId}/search?query=${encodeURIComponent(
+        const url = `/.netlify/functions/bibleProxy?query=${encodeURIComponent(
             query
         )}&sort=relevance`;
 
         try {
-            const response = await fetch(url, {
-                method: "GET",
-                headers: {
-                    "api-key": apiKey,
-                    "Content-Type": "application/json",
-                },
-            });
-
+            const response = await fetch(url);
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }

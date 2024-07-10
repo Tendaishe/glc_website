@@ -148,3 +148,6 @@ glc_backend/.env.local
 glc_backend/.sanity
 glc_backend/dist
 glc_backend/static
+
+# Local Netlify folder
+.netlify
