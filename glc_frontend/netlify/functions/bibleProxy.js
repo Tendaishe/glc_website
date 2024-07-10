@@ -1,6 +1,6 @@
 // netlify/functions/bibleProxy.js
+// const fetch = require("node-fetch");
 import fetch from "node-fetch";
-
 exports.handler = async function (event) {
     // Get the query parameter from the request
     const query = event.queryStringParameters.query;
